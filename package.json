@@ -1,0 +1,24 @@
+{
+  "name": "torrentproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": " node -r @swc-node/register index.ts ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@swc-node/register": "^1.10.2",
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.6.7",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@types/bencode": "^2.0.4",
+    "@types/node": "^20.14.9",
+    "bencode": "^4.0.0",
+    "bencodec": "^3.0.1"
+  }
+}

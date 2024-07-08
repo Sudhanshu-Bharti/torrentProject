@@ -54,6 +54,5 @@ const msgHandler = (msg, socket)=>{
     }
 }
 const isHandShake = (msg:any) =>{
-    return msg.length ===  msg.readUInt8(0)+ 49 &&
-            msg.toString('utf8', 1) === "BitTorrent Protocol"
+    return msg.length ===  msg.readUInt8(0)+ 49 && msg.toString('utf8', 1) === "BitTorrent Protocol"
 }

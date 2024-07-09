@@ -3,6 +3,34 @@ import fs from 'fs';
 import bencodec from 'bencodec';
 import crypto from "crypto";
 
+export const BLOCK_LEN = Math.pow(2,14)
+
+export const pieceLen = (torrent, pieceIndex) => {
+    const totalLen = BigInt(torrent != null && size(torrent).toString());
+    const pieceLen = torrent.info['piece length']
+
+    const lastPieceLen = totalLen % pieceLen
+    const lastPieceIndex = Math.floor(Number(totalLen) / pieceLen)
+
+    return lastPieceIndex ===pieceIndex ? lastPieceLen : pieceLen
+}
+
+export const blocksPerPiece = (torrent , pieceIndex) => {
+    const pieceLength = pieceLen(torrent,pieceIndex)
+    return Math.ceil(pieceLength / BLOCK_LEN)
+}
+
+export const blockLen = (torrent, pieceIndex, blockIndex) => {
+    const pieceLength = pieceLen(torrent, pieceIndex)
+
+    const lastPieceLen = pieceLength % BLOCK_LEN
+    const lastPieceIndex = Math.floor(pieceLength / BLOCK_LEN)
+
+    return blockIndex === lastPieceIndex ? lastPieceLen : BLOCK_LEN
+}
+
+
+
 export const open = (filepath) => {
     try {
         const data = fs.readFileSync(filepath);
